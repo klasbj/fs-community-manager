@@ -1,5 +1,6 @@
 import { promises as fs } from "fs";
 import path from "path";
+import { EventEmitter } from "events";
 
 export interface Configuration {
     msfsPackagesDirectory?: string;
@@ -8,21 +9,24 @@ export interface Configuration {
 
 export class ConfigurationManager {
     private configFile: string;
-    private instance: Configuration;
+    private instance?: Configuration;
+    private event: EventEmitter;
 
     constructor() {
-        this.instance = {};
+        this.instance = undefined;
         this.configFile = path.join(
             process.env.LOCALAPPDATA ?? process.env.XDG_CONFIG_HOME ?? process.env.HOME + "/.config",
             "fs-community-manager",
             "config.json"
         );
+        this.event = new EventEmitter();
     }
 
     public loadConfiguration = async (): Promise<void> => {
         try {
             const configData = await fs.readFile(this.configFile, "utf-8");
             this.instance = JSON.parse(configData);
+            this.event.emit("config-loaded");
         } catch (e) {
             console.log("Could not read file", e);
         }
@@ -38,5 +42,15 @@ export class ConfigurationManager {
         }
     };
 
-    public getConfiguration = (): Configuration => this.instance;
+    public getConfiguration = (): Configuration | undefined => this.instance;
+
+    public getConfigurationAsync = (): Promise<Configuration> => {
+        if (this.instance != null) {
+            return Promise.resolve(this.instance);
+        }
+
+        return new Promise((resolve) => {
+            this.event.once("config-loaded", () => resolve(this.instance));
+        });
+    };
 }
