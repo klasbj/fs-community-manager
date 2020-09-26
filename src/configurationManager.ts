@@ -26,9 +26,11 @@ export class ConfigurationManager {
         try {
             const configData = await fs.readFile(this.configFile, "utf-8");
             this.instance = JSON.parse(configData);
-            this.event.emit("config-loaded");
         } catch (e) {
             console.log("Could not read file", e);
+            this.instance = {};
+        } finally {
+            this.event.emit("config-loaded");
         }
     };
 
