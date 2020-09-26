@@ -25,7 +25,19 @@
  *  });
  * ```
  */
-
+import React from "react";
+import ReactDOM from "react-dom";
 import "./index.css";
+
+const App: React.FC = () => {
+    return <p>Helo</p>;
+};
+
+ReactDOM.render(
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>,
+    document.getElementById("root")
+);
 
 console.log('👋 This message is being logged by "renderer.js", included via webpack');
