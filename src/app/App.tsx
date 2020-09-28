@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { HashRouter as Router } from "react-router-dom";
+import { HashRouter as Router, Route, Switch } from "react-router-dom";
 import { FirstBootSettings } from "./FirstBootSettings";
 import { Settings } from "./Settings";
+import { Sidebar } from "./Sidebar";
+import "../theme.css";
+import "./App.css";
 
 export const App: React.FC = () => {
     return (
@@ -32,9 +35,19 @@ const AppActual: React.FC = () => {
     }
 
     return (
-        <div>
-            <p>{status}</p>
-            <Settings />
+        <div className="AppContainer dark-theme">
+            <Sidebar />
+            <div className="Main">
+                <Switch>
+                    <Route path="/settings">
+                        <p>{status}</p>
+                        <Settings />
+                    </Route>
+                    <Route path="/">
+                        <p>Helo</p>
+                    </Route>
+                </Switch>
+            </div>
         </div>
     );
 };

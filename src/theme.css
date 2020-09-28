@@ -1,0 +1,7 @@
+.dark-theme {
+    --main-fg: #ddd;
+    --low-fg: #777;
+
+    --main-bg: #1e1e1e;
+    --alt-bg: #2c2c2c;
+}

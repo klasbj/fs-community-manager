@@ -1,0 +1,30 @@
+.Sidebar nav a {
+    text-decoration: none;
+    width: 100%;
+    height: 45px;
+    line-height: 45px;
+
+    color: var(--low-fg);
+
+    display: grid;
+    grid-template-areas: "icon text";
+    grid-template-columns: 45px 1fr;
+
+    font-family: sans-serif;
+}
+
+.Sidebar nav a.active {
+    background-color: var(--main-bg);
+    color: var(--main-fg);
+}
+
+.Sidebar nav a svg {
+    width: 25px;
+    height: 100%;
+    grid-area: icon;
+    margin: auto;
+}
+
+.Sidebar nav a span {
+    grid-area: text;
+}

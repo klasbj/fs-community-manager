@@ -23,5 +23,22 @@ module.exports = [
                 transpileOnly: true
             }
         }
+    },
+    {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        issuer: {
+            test: /\.tsx?$/
+        },
+        use: [
+            {
+                loader: "@svgr/webpack",
+                options: {}
+            },
+            "url-loader"
+        ]
+    },
+    {
+        test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+        loader: "url-loader"
     }
 ];

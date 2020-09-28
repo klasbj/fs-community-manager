@@ -1,0 +1,30 @@
+body {
+    margin: 0;
+}
+
+a {
+    color: var(--main-fg);
+}
+
+.AppContainer {
+    display: grid;
+    grid-template-columns: 10em 1fr;
+    grid-template-areas:
+        "sidebar main";
+    height: 100vh;
+    column-gap: 10px;
+    background: var(--main-bg);
+    color: var(--main-fg);
+}
+
+.Sidebar {
+    grid-area: "sidebar";
+    height: 100%;
+    background: var(--alt-bg);
+}
+
+.Main {
+    grid-area: "Main";
+    height: 100%;
+    overflow-y: auto;
+}
