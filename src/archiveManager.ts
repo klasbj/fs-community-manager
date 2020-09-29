@@ -3,6 +3,7 @@ import AdmZip from "adm-zip";
 import { promises as fs } from "fs";
 
 export interface Package {
+    packageName: string;
     title: string;
     version: string;
     minimum_game_version: string;
@@ -51,6 +52,7 @@ export class ArchiveManager {
                     }
 
                     const pkg: Package = {
+                        packageName: pkgName,
                         title: json.title || pkgName,
                         content_type: json.content_type,
                         version: json.package_version,
@@ -94,9 +96,22 @@ export class ArchiveManager {
             });
         });
 
+        console.log("Creating symlinks...");
+
         await Promise.all(
             file.packages.map((pkg) => {
-                fs.symlink(path.join(targetPath, pkg.rootPath), path.join(config.msfsPackagesDirectory, pkg.title));
+                console.log(
+                    "symlink",
+                    path.join(config.msfsPackagesDirectory, pkg.packageName),
+                    "to",
+                    path.join(targetPath, pkg.rootPath)
+                );
+
+                return fs.symlink(
+                    path.join(targetPath, pkg.rootPath),
+                    path.join(config.msfsPackagesDirectory, pkg.packageName),
+                    "dir"
+                );
             })
         );
     };

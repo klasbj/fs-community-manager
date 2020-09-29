@@ -19,6 +19,7 @@ export class ConfigurationManager {
             "fs-community-manager",
             "config.json"
         );
+        console.log(this.configFile);
         this.event = new EventEmitter();
     }
 

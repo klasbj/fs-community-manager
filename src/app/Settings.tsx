@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 export const Settings: React.FC = () => {
     const [config, setLocalConfig] = useState(window.configurationManager.getConfiguration);
+    console.log("Settings", config);
     const setConfig = <K extends keyof typeof config>(k: K, v: typeof config[K]): void => {
         window.configurationManager.setConfiguration({ [k]: v });
         setLocalConfig({ ...config, [k]: v });
@@ -14,7 +15,7 @@ export const Settings: React.FC = () => {
                 <input
                     id={"fsCommunityManagerPackagesDirectory"}
                     type="text"
-                    value={config.fsCommunitManagerPackagesDirectory ?? ""}
+                    value={config?.fsCommunitManagerPackagesDirectory ?? ""}
                     onChange={(e) => setConfig("fsCommunitManagerPackagesDirectory", e.target.value)}
                 />
                 <button
@@ -33,7 +34,7 @@ export const Settings: React.FC = () => {
                 <input
                     id={"msfsPackagesDirectory"}
                     type="text"
-                    value={config.msfsPackagesDirectory ?? ""}
+                    value={config?.msfsPackagesDirectory ?? ""}
                     onChange={(e) => setConfig("msfsPackagesDirectory", e.target.value)}
                 />
                 <button

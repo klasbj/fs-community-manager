@@ -8,9 +8,12 @@ if (require("electron-squirrel-startup")) {
     app.quit();
 }
 
+app.allowRendererProcessReuse = false;
+
+let mainWindow: BrowserWindow;
 const createWindow = (): void => {
     // Create the browser window.
-    const mainWindow = new BrowserWindow({
+    mainWindow = new BrowserWindow({
         height: 600,
         width: 800,
         webPreferences: {
