@@ -1,6 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { ReactComponent as FilledGear } from "bootstrap-icons/icons/gear-fill.svg";
+import { ReactComponent as GearIcon } from "bootstrap-icons/icons/gear.svg";
+import { ReactComponent as CollectionIcon } from "bootstrap-icons/icons/collection.svg";
 import "./Sidebar.css";
 
 export const Sidebar: React.FC = () => {
@@ -8,10 +9,11 @@ export const Sidebar: React.FC = () => {
         <div className="Sidebar">
             <nav>
                 <NavLink exact to="/">
+                    <CollectionIcon />
                     <span>Packages</span>
                 </NavLink>
                 <NavLink to="/settings">
-                    <FilledGear />
+                    <GearIcon />
                     <span>Settings</span>
                 </NavLink>
             </nav>

@@ -66,6 +66,7 @@
     "@electron-forge/plugin-webpack": "6.0.0-beta.53",
     "@marshallofsound/webpack-asset-relocator-loader": "^0.5.0",
     "@svgr/webpack": "^5.4.0",
+    "@types/adm-zip": "^0.4.33",
     "@types/node": "^14.11.2",
     "@types/react": "^16.9.49",
     "@types/react-dom": "^16.9.8",
@@ -87,6 +88,7 @@
     "url-loader": "^4.1.0"
   },
   "dependencies": {
+    "adm-zip": "^0.4.16",
     "bootstrap-icons": "^1.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "react": "^16.13.1",

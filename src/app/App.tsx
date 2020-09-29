@@ -5,6 +5,7 @@ import { Settings } from "./Settings";
 import { Sidebar } from "./Sidebar";
 import "../theme.css";
 import "./App.css";
+import { PackagesPane } from "./PackagesPane";
 
 export const App: React.FC = () => {
     return (
@@ -44,7 +45,7 @@ const AppActual: React.FC = () => {
                         <Settings />
                     </Route>
                     <Route path="/">
-                        <p>Helo</p>
+                        <PackagesPane />
                     </Route>
                 </Switch>
             </div>
